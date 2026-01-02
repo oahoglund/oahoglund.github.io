@@ -90,5 +90,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.addEventListener('scroll', handleNavbarScroll);
+    
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const html = document.documentElement;
+    
+    // Get theme from localStorage or default to light
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme
+    if (currentTheme === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+    
+    // Toggle theme function
+    function toggleTheme() {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update icon
+        if (newTheme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    }
+    
+    // Add click event listener
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    // Update navbar shadow for dark mode
+    function updateNavbarShadow() {
+        const isDark = html.getAttribute('data-theme') === 'dark';
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = isDark 
+                ? '0 4px 6px -1px rgba(0, 0, 0, 0.4)' 
+                : '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.boxShadow = isDark 
+                ? '0 1px 2px 0 rgba(0, 0, 0, 0.3)' 
+                : '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+        }
+    }
+    
+    // Update shadow when theme changes
+    const observer = new MutationObserver(updateNavbarShadow);
+    observer.observe(html, { attributes: true, attributeFilter: ['data-theme'] });
 });
 

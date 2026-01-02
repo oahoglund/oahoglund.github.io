@@ -97,6 +97,13 @@
         font-size: 0.9rem;
     }
     
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        margin-left: 0.75rem;
+    }
+    
     h1 {
         font-size: 2.5rem;
     }
@@ -236,6 +243,13 @@
     .nav-link {
         font-size: 0.85rem;
         padding: 0.25rem 0;
+    }
+    
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
     }
     
     h1 {
