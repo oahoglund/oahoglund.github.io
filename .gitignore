@@ -42,3 +42,9 @@ build/
 *.temp
 .cache/
 
+# Development/Planning Documentation
+PLAN.md
+PROJECT_SUMMARY.md
+SETUP.md
+CONTENT.md
+
